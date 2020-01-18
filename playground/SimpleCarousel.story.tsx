@@ -4,7 +4,7 @@ import { StoryFnReactReturnType } from '@storybook/react/dist/client/preview/typ
 import ReactPanoply from 'react-panoply'
 
 const slides = new Array(10).fill(0).map((item, index) => (
-  <div key={index} style={{ height: 200, background: '#f2f2f2' }}>
+  <div key={index} className="slide" style={{ height: 200, background: '#f2f2f2' }}>
     slide {index + 1}
   </div>
 ))

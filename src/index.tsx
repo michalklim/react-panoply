@@ -1,6 +1,7 @@
-import React, { Children, FunctionComponent, ReactNode, CSSProperties, useState } from 'react'
+import React, { Children, FunctionComponent, ReactNode, CSSProperties, useState, cloneElement } from 'react'
+import cx from 'classnames'
 
-import { REACT_PANOPLY_CLASS, REACT_PANOPLY_WRAPPER_CLASS } from './constants'
+import { REACT_PANOPLY_CLASS, REACT_PANOPLY_WRAPPER_CLASS, ACTIVE_SLIDE_CLASS } from './constants'
 
 export interface ReactPanoplyParams {
   slidesSpacing: number
@@ -89,11 +90,15 @@ const ReactPanoply: FunctionComponent<ReactPanoplyProps> = ({
 
   const [activeSlideIndex, setActiveSlideIndex] = useState(params.initialSlide ?? defaultState.activeSlideIndex)
   const wrapperStyles = getCarouselWrapperStyles(slidesLength, parsedParams, activeSlideIndex)
+  const parsedChildren = Children.map(children, (child, index) => {
+    const className = cx(child.props.className, index === activeSlideIndex && ACTIVE_SLIDE_CLASS)
+    return cloneElement(child, { className })
+  })
 
   return (
     <div style={{ width: '100%', overflow: 'hidden' }} className={className}>
       <div style={wrapperStyles} className={wrapperClass}>
-        {children}
+        {parsedChildren}
       </div>
 
       <button onClick={() => prevSlide(setActiveSlideIndex, parsedParams, slidesLength)}> prev </button>

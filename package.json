@@ -48,6 +48,7 @@
     "@commitlint/cli": "8.3.5",
     "@commitlint/config-conventional": "8.3.4",
     "@storybook/react": "5.3.6",
+    "@types/classnames": "^2.2.9",
     "@types/react": "16.9.17",
     "@types/react-dom": "16.9.4",
     "@types/storybook__react": "5.2.1",
@@ -73,5 +74,7 @@
     "webpack-dev-server": "3.10.1",
     "webpack-merge": "4.2.2"
   },
-  "dependencies": {}
+  "dependencies": {
+    "classnames": "^2.2.6"
+  }
 }
