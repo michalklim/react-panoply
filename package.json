@@ -30,7 +30,8 @@
   "homepage": "https://github.com/michalklim/react-panoply#readme",
   "husky": {
     "hooks": {
-      "pre-commit": "pretty-quick --staged"
+      "pre-commit": "pretty-quick --staged",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
     }
   },
   "devDependencies": {
@@ -40,6 +41,8 @@
     "@babel/preset-env": "7.8.3",
     "@babel/preset-react": "7.8.3",
     "@babel/preset-typescript": "7.8.3",
+    "@commitlint/cli": "8.3.5",
+    "@commitlint/config-conventional": "8.3.4",
     "@storybook/react": "5.3.6",
     "@types/react": "16.9.17",
     "@types/react-dom": "16.9.4",
