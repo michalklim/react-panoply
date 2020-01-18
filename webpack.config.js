@@ -1,8 +1,8 @@
-const webpack = require('webpack');
-const webpackMerge = require('webpack-merge');
-const modeConfig = mode => require(`./webpack.${mode}.js`)(mode);
+const webpack = require('webpack')
+const webpackMerge = require('webpack-merge')
+const modeConfig = mode => require(`./webpack.${mode}.js`)(mode)
 
-module.exports = ({ mode } = { mode: 'production' }) => {
+module.exports = ({ mode } = { mode: 'development' }) => {
   return webpackMerge(
     {
       mode,
@@ -30,5 +30,5 @@ module.exports = ({ mode } = { mode: 'production' }) => {
       resolve: { extensions: ['.js', '.jsx', '.tsx', '.ts', '.json'] },
     },
     modeConfig(mode),
-  );
-};
+  )
+}
