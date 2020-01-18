@@ -1,4 +1,4 @@
-import React, { Children, FunctionComponent, ReactNode } from 'react'
+import React, { Children, FunctionComponent, ReactNode, CSSProperties } from 'react'
 
 export interface ReactPanoplyParams {
   slidesSpacing: number
@@ -12,7 +12,9 @@ export interface ReactPanoplyProps {
   wrapperClass?: string
 }
 
-const getCarouselWrapperStyles = (slidesLength, slidesSpacing, slidesPerView) => {
+type GetCarouselWrapperStyles = (slidesLength: number, slidesSpacing: number, slidesPerView: number) => CSSProperties
+
+const getCarouselWrapperStyles: GetCarouselWrapperStyles = (slidesLength, slidesSpacing, slidesPerView) => {
   const gridWrapperWidth = (slidesLength * 100) / slidesPerView
   const gridSlidesSpacingOffset = slidesSpacing * ((gridWrapperWidth - 100) / 100)
 

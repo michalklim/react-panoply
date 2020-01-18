@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { ReactNode } from 'react'
 import ReactPanoply from 'react-panoply'
 
 const slides = new Array(10).fill(0).map((item, index) => (
@@ -7,11 +7,11 @@ const slides = new Array(10).fill(0).map((item, index) => (
   </div>
 ))
 
-const SimpleCarouselStory = () => {
+const SimpleCarouselStory = (): ReactNode => {
   return (
     <ReactPanoply
       params={{
-        slidesPerView: 5,
+        slidesPerView: 8,
         slidesSpacing: 20,
       }}
     >
