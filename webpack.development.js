@@ -1,9 +1,6 @@
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin')
-const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin')
 
 module.exports = () => ({
-  resolve: {
-    plugins: [new TsconfigPathsPlugin()],
-  },
+  devtool: 'eval',
   plugins: [new ForkTsCheckerWebpackPlugin()],
 })

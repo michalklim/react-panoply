@@ -1,5 +1,6 @@
 const webpack = require('webpack')
 const webpackMerge = require('webpack-merge')
+const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin')
 const modeConfig = mode => require(`./webpack.${mode}.js`)(mode)
 
 module.exports = ({ mode } = { mode: 'development' }) => {
@@ -27,7 +28,10 @@ module.exports = ({ mode } = { mode: 'development' }) => {
           },
         ],
       },
-      resolve: { extensions: ['.js', '.jsx', '.tsx', '.ts', '.json'] },
+      resolve: {
+        plugins: [new TsconfigPathsPlugin()],
+        extensions: ['.js', '.jsx', '.tsx', '.ts', '.json'],
+      },
     },
     modeConfig(mode),
   )

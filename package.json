@@ -2,14 +2,14 @@
   "name": "react-panoply",
   "version": "0.0.0",
   "description": "Robust, performant, customizable, SSR friendly carousel",
-  "main": "src/index.ts",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "check-types": "tsc",
     "dev": "start-storybook",
-    "prod": "webpack --env.mode production",
+    "build": "webpack --env.mode production && tsc -b tsconfig.production.json",
     "debug": "node --inspect-brk ./node_modules/webpack/bin/webpack.js",
-    "prod:debug": "npm run debug -- --env.mode production",
     "dev:debug": "npm run debug -- --env.mode development"
   },
   "repository": {
@@ -33,6 +33,10 @@
       "pre-commit": "pretty-quick --staged",
       "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
     }
+  },
+  "peerDependencies": {
+    "react": ">= 16.8.0",
+    "react-dom": ">= 16.8.0"
   },
   "devDependencies": {
     "@babel/core": "7.8.3",

@@ -1,5 +1,7 @@
 import React, { Children, FunctionComponent, ReactNode, CSSProperties } from 'react'
 
+import { REACT_PANOPLY_CLASS, REACT_PANOPLY_WRAPPER_CLASS } from './constants'
+
 export interface ReactPanoplyParams {
   slidesSpacing: number
   slidesPerView: 'auto' | number
@@ -34,9 +36,9 @@ const defaultParams: ReactPanoplyParams = {
 
 const ReactPanoply: FunctionComponent<ReactPanoplyProps> = ({
   children,
-  className = 'react-panoply',
+  className = REACT_PANOPLY_CLASS,
   params = {},
-  wrapperClass = 'react-panoply-wrapper',
+  wrapperClass = REACT_PANOPLY_WRAPPER_CLASS,
 }) => {
   const mergedParams = { ...defaultParams, ...params }
   const slidesLength = Children.count(children)
