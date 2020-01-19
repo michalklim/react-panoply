@@ -1,5 +1,5 @@
 import { Dispatch, SetStateAction } from 'react'
-import { ReactPanoplyParsedParams } from 'react-panoply'
+import { ReactPanoplyParsedParams } from '../parseParams'
 
 export type ChangeSlide = (
   direction: 'prev' | 'next',

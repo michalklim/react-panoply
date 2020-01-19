@@ -1,10 +1,11 @@
-import React, { Children, FunctionComponent, CSSProperties, useState, cloneElement } from 'react'
-import cx from 'classnames'
+import React, { Children, FunctionComponent, CSSProperties, useState } from 'react'
 
-import { REACT_PANOPLY_CLASS, REACT_PANOPLY_WRAPPER_CLASS, ACTIVE_SLIDE_CLASS } from '../../constants'
+import { REACT_PANOPLY_CLASS, REACT_PANOPLY_WRAPPER_CLASS } from '../../constants'
 import changeSlide from '../../helpers/changeSlide'
 import defaultParams from '../../constants/defaultParams'
-import { ReactPanoplyParsedParams, ReactPanoplyProps } from './types'
+import { ReactPanoplyProps } from './types'
+import parseSlides from '../../helpers/parseSlides'
+import parseParams, { ReactPanoplyParsedParams } from '../../helpers/parseParams'
 
 type GetCarouselWrapperStyles = (
   slidesLength: number,
@@ -35,22 +36,16 @@ const ReactPanoply: FunctionComponent<ReactPanoplyProps> = ({
 }) => {
   const slidesLength = Children.count(children)
   const mergedParams = { ...defaultParams, ...params }
-  const parsedParams = {
-    ...mergedParams,
-    slidesPerView: mergedParams.slidesPerView === 'auto' ? slidesLength : mergedParams.slidesPerView,
-    initialSlide: mergedParams.initialSlide - 1,
-  }
+  const parsedParams = parseParams(mergedParams, slidesLength)
 
   const [activeSlideIndex, setActiveSlideIndex] = useState<number>(parsedParams.initialSlide)
+
   const wrapperStyles = getCarouselWrapperStyles(slidesLength, parsedParams, activeSlideIndex)
-  const parsedChildren = Children.map(children, (child, index) => {
-    const className = cx(child.props.className, index === activeSlideIndex && ACTIVE_SLIDE_CLASS)
-    return cloneElement(child, { className })
-  })
+  const parsedSlides = parseSlides(activeSlideIndex, children)
   return (
     <div style={{ width: '100%', overflow: 'hidden' }} className={className}>
       <div style={wrapperStyles} className={wrapperClass}>
-        {parsedChildren}
+        {parsedSlides}
       </div>
 
       <button onClick={() => changeSlide('prev', setActiveSlideIndex, parsedParams, slidesLength)}> prev </button>
