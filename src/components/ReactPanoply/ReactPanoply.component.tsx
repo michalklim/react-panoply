@@ -1,32 +1,15 @@
-import React, { Children, FunctionComponent, CSSProperties, useState } from 'react'
+import React, { Children, FunctionComponent, useState } from 'react'
 
 import { REACT_PANOPLY_CLASS, REACT_PANOPLY_WRAPPER_CLASS } from '../../constants'
 import changeSlide from '../../helpers/changeSlide'
 import defaultParams from '../../constants/defaultParams'
-import { ReactPanoplyProps } from './types'
 import parseSlides from '../../helpers/parseSlides'
-import parseParams, { ReactPanoplyParsedParams } from '../../helpers/parseParams'
+import parseParams from '../../helpers/parseParams'
+import computeSlidesWrapperStyles from '../../helpers/computeSlidesWrapperStyles'
 
-type GetCarouselWrapperStyles = (
-  slidesLength: number,
-  params: ReactPanoplyParsedParams,
-  activeSlideIndex: number,
-) => CSSProperties
+import { ReactPanoplyProps } from './types'
 
-const getCarouselWrapperStyles: GetCarouselWrapperStyles = (slidesLength, params, activeSlideIndex) => {
-  const { slidesSpacing, slidesPerView } = params
-  const gridWrapperPercentWidth = (slidesLength * 100) / slidesPerView
-  const gridSlidesSpacingOffset = slidesSpacing * ((gridWrapperPercentWidth - 100) / 100)
-  return {
-    display: 'grid',
-    gridTemplateColumns: `repeat(${slidesLength}, 1fr)`,
-    gridTemplateRows: `1fr`,
-    gridColumnGap: slidesSpacing,
-    width: `calc(${gridWrapperPercentWidth}% + ${gridSlidesSpacingOffset}px)`,
-    transform: `translateX(-${(activeSlideIndex * 100) / slidesLength}%)`,
-    transition: 'transform 300ms',
-  }
-}
+const carouselStyles = { width: '100%', overflow: 'hidden' }
 
 const ReactPanoply: FunctionComponent<ReactPanoplyProps> = ({
   children,
@@ -40,10 +23,11 @@ const ReactPanoply: FunctionComponent<ReactPanoplyProps> = ({
 
   const [activeSlideIndex, setActiveSlideIndex] = useState<number>(parsedParams.initialSlide)
 
-  const wrapperStyles = getCarouselWrapperStyles(slidesLength, parsedParams, activeSlideIndex)
+  const wrapperStyles = computeSlidesWrapperStyles(slidesLength, parsedParams, activeSlideIndex)
   const parsedSlides = parseSlides(activeSlideIndex, children)
+
   return (
-    <div style={{ width: '100%', overflow: 'hidden' }} className={className}>
+    <div style={carouselStyles} className={className}>
       <div style={wrapperStyles} className={wrapperClass}>
         {parsedSlides}
       </div>
