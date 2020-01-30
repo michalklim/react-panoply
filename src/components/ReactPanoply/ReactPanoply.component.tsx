@@ -1,15 +1,15 @@
-import React, { Children, FunctionComponent, useState } from 'react'
+import React, { Children, FunctionComponent, useEffect, useState } from 'react'
 
 import { REACT_PANOPLY_CLASS, REACT_PANOPLY_WRAPPER_CLASS } from '../../constants'
 import changeSlide from '../../helpers/changeSlide'
 import defaultParams from '../../constants/defaultParams'
 import parseSlides from '../../helpers/parseSlides'
 import parseParams from '../../helpers/parseParams'
-import computeSlidesWrapperStyles from '../../helpers/computeSlidesWrapperStyles'
+import computeWrapperStyles from '../../helpers/computeWrapperStyles'
 
 import { ReactPanoplyProps } from './types'
 
-const carouselStyles = { width: '100%', overflow: 'hidden' }
+const carouselStyles = { width: '100%', overflow: 'hidden', background: 'blue' }
 
 const ReactPanoply: FunctionComponent<ReactPanoplyProps> = ({
   children,
@@ -23,8 +23,12 @@ const ReactPanoply: FunctionComponent<ReactPanoplyProps> = ({
 
   const [activeSlideIndex, setActiveSlideIndex] = useState<number>(parsedParams.initialSlide)
 
-  const wrapperStyles = computeSlidesWrapperStyles(slidesLength, parsedParams, activeSlideIndex)
+  const wrapperStyles = computeWrapperStyles(slidesLength, parsedParams, activeSlideIndex)
   const parsedSlides = parseSlides(activeSlideIndex, children)
+
+  useEffect(() => {
+    console.log(activeSlideIndex)
+  }, [activeSlideIndex])
 
   return (
     <div style={carouselStyles} className={className}>

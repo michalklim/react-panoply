@@ -1,7 +1,7 @@
 import { ReactPanoplyParams } from './types'
 
 const defaultParams: ReactPanoplyParams = {
-  slidesSpacing: 10,
+  slidesGap: 10,
   slidesPerView: 'auto',
   initialSlide: 1,
   loop: false,

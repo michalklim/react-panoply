@@ -1,7 +1,7 @@
 import { Dispatch, SetStateAction } from 'react'
 import { ReactPanoplyParsedParams } from '../parseParams'
 
-export type ChangeSlide = (
+export type ChangeSlideHelper = (
   direction: 'prev' | 'next',
   setActiveSlideIndex: Dispatch<SetStateAction<number>>,
   params: ReactPanoplyParsedParams,

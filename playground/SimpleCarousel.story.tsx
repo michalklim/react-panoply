@@ -20,8 +20,8 @@ const SimpleCarouselStory = (): StoryFnReactReturnType => {
   return (
     <ReactPanoply
       params={{
-        slidesPerView: 2,
-        slidesSpacing: 24,
+        slidesPerView: 3,
+        slidesGap: 10,
         initialSlide: 3,
         centerActiveSlide: false,
       }}

@@ -1,5 +1,5 @@
 export interface ReactPanoplyParams {
-  slidesSpacing: number
+  slidesGap: number
   slidesPerView: 'auto' | number
   initialSlide: number
   loop: boolean

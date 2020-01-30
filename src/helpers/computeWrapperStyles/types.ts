@@ -2,7 +2,7 @@ import { CSSProperties } from 'react'
 
 import { ReactPanoplyParsedParams } from '../parseParams'
 
-export type ComputeSlidesWrapperStylesHelper = (
+export type ComputeWrapperStylesHelper = (
   slidesLength: number,
   params: ReactPanoplyParsedParams,
   activeSlideIndex: number,
